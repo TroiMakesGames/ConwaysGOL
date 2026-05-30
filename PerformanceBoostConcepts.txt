@@ -4,7 +4,7 @@ the 2 following concepts of performance improvements will be based around decidi
 
 both concept will operate during the iteration step where the new cell states are calculated (when the buffer is filled by looking at the previous world). They will determine (using 2 different methods) whether a cell is active or not and will add the active cells into an array (not grid) of active coordinates which will replace the n**2 grid of both active and inactive cells in the next frame (so each iteration step will now look at the previous world to determine the new world and decide the active cells of the next world creating a "linked chain" of 3 buffers instead of 2 (2 grids and 1 array of coordinates))
 
-1. relevance check
+1. irrelevance check
 	"
 	after the cells new state is decided
 		if the cell is live or if any neighbouring cell is live
@@ -18,8 +18,8 @@ both concept will operate during the iteration step where the new cell states ar
 	# this reduces the time complexity to where the original O((n**2)*8) is the maximum time complexity and not the default
 
 
-2. - difference check
-	# the relevance check is already a proper method of optimisation but it can still be improved a lot
+2. live irrelevance check
+	# the irrelevance check is already a proper method of optimisation but it can still be improved a lot
 	# as it only removes dead irrelevant cells and not also live irrelevant cells
 	# live irrelevant cells are cells that have a stable formation
 		#an example is a 2x2 live square where from one iteration to the next nothing changes
