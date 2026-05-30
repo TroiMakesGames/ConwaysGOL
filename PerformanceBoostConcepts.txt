@@ -1,0 +1,57 @@
+Conways Game of life runs on an O((n**2)*8) algorithm as each cell in a 2D grid has all 8 of its neighbours counted to determine the new state - but this unoptimised method can be improved by checking only active cells
+
+the 2 following concepts of performance improvements will be based around deciding whether a cell is active or not in order to determine if it gets checked in the next frame
+
+both concept will operate during the iteration step where the new cell states are calculated (when the buffer is filled by looking at the previous world). They will determine (using 2 different methods) whether a cell is active or not and will add the active cells into an array (not grid) of active coordinates which will replace the n**2 grid of both active and inactive cells in the next frame (so each iteration step will now look at the previous world to determine the new world and decide the active cells of the next world creating a "linked chain" of 3 buffers instead of 2 (2 grids and 1 array of coordinates))
+
+1. relevance check
+	"
+	after the cells new state is decided
+		if the cell is live or if any neighbouring cell is live
+			add its coordinates to the next worlds active cells array
+	"
+	# this method of optimisation basicaly ignores all irrelevant dead cells that do not have any neighbouring live cells
+	# meaning that in a 10x10 world where there is only 1 live cell, only 9 cells are checked in the next frame
+		# these are the live cell and the 8 neighbours, the other 91 dead cells are inactive and CANNOT
+		# change in the next frame meaning there is no reason to process them
+
+	# this reduces the time complexity to where the original O((n**2)*8) is the maximum time complexity and not the default
+
+
+2. - difference check
+	# the relevance check is already a proper method of optimisation but it can still be improved a lot
+	# as it only removes dead irrelevant cells and not also live irrelevant cells
+	# live irrelevant cells are cells that have a stable formation
+		#an example is a 2x2 live square where from one iteration to the next nothing changes
+
+	# these cells dont need to be proccesed to the same extent as the others as the current worlds state can be coppied into the new worlds state
+	# (basicaly its like if a human were to manualy go through each cell, to optimise time, they would skip cell groups that they clearly know wont change and will simply copy the formation to the new world - they would skip live irelevant cells)
+	# (explanation after pseudocode)
+
+	"
+	after the cells new state is decided
+		if the new cell state is different from the old state
+			add its coordinates and all neighbouring coordinates to next worlds active cells array
+	"
+	
+	# we can be 100% sure that only the active cells have a chance to change, meaning that only they need to be proccesed
+	# the rest of the cells can simply be copied from the previous world
+	# therefore this method also changes how the new world buffer starts off
+	# instead of creating a new blank (dead) grid, the old one is copied, but the only checked cells are still the decided active cells
+		# (instead of creating a whole new world it just updates the relevant cells of the previous world)
+
+	# this method is basicaly an upgrade of the first one, but the time complexity maximum is still the original algorithms O((n**2)*8), in practice it is reduced by i imagine quite a lot
+
+ADDITION:
+the described algorithms work for the original emergent behaviour rules for Conways GoL or simpler deviations where only the neighbouring cells are checked
+this doesnt include algorithms where a radius of neighbouring cells are checked - but i suspect that similar methods can be thought through ("relevance check" concept)
+
+IN CONCLUSION:
+the unoptimised method leaves a lot of open room for improvement
+the main goal is to procces only relevant cells
+the first method removes all dead irrelevant cells
+and the second removes ALL irrelevant cells (dead and live)
+we are left with a much more optimised simulation
+
+the next steps from here would be to recognise patterns in a chain of following states (oscilating formations as a form of a "semi-relevant" cell) and reducing the effort required to process them.
+in order to truly maximise the runtime of Conways game of life multithreading / GPU processing can be implemented
