@@ -55,3 +55,23 @@ we are left with a much more optimised simulation
 
 the next steps from here would be to recognise patterns in a chain of following states (oscilating formations as a form of a "semi-relevant" cell) and reducing the effort required to process them.
 in order to truly maximise the runtime of Conways game of life multithreading / GPU processing can be implemented
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+WHAT I NOTICED AFTER IMPLEMENTING THE CONCEPTS:
+datatypes are important here, specificaly the active list, which i converted to a set
+	the reason being that the same cell could possibly be added to the nextActive list multiple times
+	and in order to add it to the list, the algorithm must check for already existing duplicates
+		this is an O(n) operation by itself meaning that the optimisation method runs slower than original
+	
+	on the other hand, a set has a lookup time of O(1) and additionaly, when adding a new element, it checks
+	for existing duplicates by default and the check doesnt need to be implemented manualy
+
+after adding a simple FPS display i noticed the following:
+- Default CGoL runs at around 15 fps, highest reached 25 fps
+- Irrelevance Check CGoL balances out at around 50 fps, highest reached 80 fps
+- Live irrelevance Check CGoL balances out at around 150 fps, highest reached 250 fps
+
+please note that the mentioned fps was read from simulations that were done on a random starting seed for each simulation and doesnt account for the rendering time
+	(while writting this i realised that rendering can also be optimised using the Irrelevance check method)
+in order to really compare the simulations, all 3 of them must run on the same starting seed and the data should be visualised over time using a graph
