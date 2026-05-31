@@ -31,6 +31,12 @@ def drawWorld():
     for x in range(len(world)):
         for y in range(len(world[x])):
 
+            """
+            #display activity
+            if (x, y) in active:
+                pygame.draw.rect(screen, (255, 0, 0), (x * drawnCellSize, y * drawnCellSize, drawnCellSize, drawnCellSize))
+            """
+
             #draw square with correct scaling size
             if world[x][y] == 1:
                 pygame.draw.rect(screen, (255, 255, 255), (x * drawnCellSize, y * drawnCellSize, drawnCellSize, drawnCellSize))
@@ -88,7 +94,7 @@ def updateWorld(world, active):
             nextActive.add((x, y))
 
     #update the world by overriding it with the next world
-    return (nextWorld, list(nextActive))
+    return (nextWorld, nextActive)
 
 #------------------------------------------------------------------------------------------------------
 
@@ -99,6 +105,12 @@ active = [(x, y) for x in range(wolrdWidth) for y in range(worldHeight)]
 #track time for fps display
 last_time = time.time()
 highestFps = 0
+
+#write graphing data
+fps_file = open("fps_log_LICGoL.txt", "w")
+accum_time = 0
+frame_count = 0
+write_count = 0
 
 #randomly gemnerate world
 for i in range(wolrdWidth):
@@ -133,10 +145,26 @@ while running:
     if fps > highestFps:
         highestFps = fps
 
-    pygame.display.set_caption(f"Conway's Game of Life - Live rrelevance check optimisation | FPS: {fps:.0f} | highestFPS: {highestFps:.0f}")
+    pygame.display.set_caption(f"Conway's Game of Life - Live irrelevance check optimisation | FPS: {fps:.0f} | highestFPS: {highestFps:.0f}")
+
+    #(stuff for graphing data collection)
+    frame_count += 1
+    accum_time += dt
+
+    if accum_time >= 0.1 and write_count < 400:     #write every 10ms (10/s) for 400 writes (40 seconds)
+        fps = frame_count / accum_time
+
+        fps_file.write(f"{fps}\n")
+        fps_file.flush()  # ensures it writes immediately
+
+        frame_count = 0
+        accum_time = 0
+        write_count += 1
 
     # Update the display
     pygame.display.flip()
+
+fps_file.close()
 
 # Quit Pygame
 pygame.quit()

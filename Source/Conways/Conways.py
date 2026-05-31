@@ -91,6 +91,12 @@ world = [[0 for _ in range(worldHeight)] for _ in range(wolrdWidth)]
 last_time = time.time()
 highestFps = 0
 
+#write graphing data
+fps_file = open("fps_log_CGoL.txt", "w")
+accum_time = 0
+frame_count = 0
+write_count = 0
+
 #randomly gemnerate world
 for i in range(wolrdWidth):
     for j in range(worldHeight):
@@ -125,9 +131,25 @@ while running:
         highestFps = fps
 
     pygame.display.set_caption(f"Conway's Game of Life | FPS: {fps:.0f} | highestFPS: {highestFps:.0f}")
+    
+    #(stuff for graphing data collection)
+    frame_count += 1
+    accum_time += dt
+
+    if accum_time >= 0.1 and write_count < 400:     #write every 10ms (10/s) for 400 writes (40 seconds)
+        fps = frame_count / accum_time
+
+        fps_file.write(f"{fps}\n")
+        fps_file.flush()  # ensures it writes immediately
+
+        frame_count = 0
+        accum_time = 0
+        write_count += 1
 
     # Update the display
     pygame.display.flip()
+
+fps_file.close()
 
 # Quit Pygame
 pygame.quit()
