@@ -5,6 +5,9 @@ import math
 import numpy as np
 import random
 
+#set seed
+random.seed(42)
+
 import time     #fps display
 
 #------------------------------------------------------------------------------------------------------------------------------------
@@ -150,8 +153,9 @@ while running:
     #(stuff for graphing data collection)
     frame_count += 1
     accum_time += dt
-
-    if accum_time >= 0.1 and write_count < 400:     #write every 10ms (10/s) for 400 writes (40 seconds)
+    
+    """
+    if accum_time >= 0.1 and write_count < 550:     #write every 10ms (10/s) for 400 writes (40 seconds)
         fps = frame_count / accum_time
 
         fps_file.write(f"{fps}\n")
@@ -160,6 +164,12 @@ while running:
         frame_count = 0
         accum_time = 0
         write_count += 1
+    """
+
+    #write active cell count each frame
+    if frame_count < 1500:
+        fps_file.write(f"{len(active)}\n")
+        fps_file.flush()  # ensures it writes immediately
 
     # Update the display
     pygame.display.flip()

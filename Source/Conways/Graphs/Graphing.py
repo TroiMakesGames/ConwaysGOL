@@ -45,17 +45,63 @@ def drawGraph(values, color, connectDots, left, bottom, width, height, highestva
 #get initial ticks
 prevT = pygame.time.get_ticks()
 
+# RANDOM 400 writes ----------------------------------------------------------------------------------------------
+
+"""
 #read data
 values_CGoL = []
-with open(r"Source/Conways/Graphs/Data/fps_log_CGoL.txt", "r") as f:
+with open(r"Source/Conways/Graphs/Data/Random_400/fps_log_CGoL.txt", "r") as f:
     values_CGoL = [float(line.strip()) for line in f]
 
 values_ICGoL = []
-with open(r"Source/Conways/Graphs/Data/fps_log_ICGoL.txt", "r") as f:
+with open(r"Source/Conways/Graphs/Data//Random_400/fps_log_ICGoL.txt", "r") as f:
     values_ICGoL = [float(line.strip()) for line in f]
 
 values_LICGoL = []
-with open(r"Source/Conways/Graphs/Data/fps_log_LICGoL.txt", "r") as f:
+with open(r"Source/Conways/Graphs/Data//Random_400/fps_log_LICGoL.txt", "r") as f:
+    values_LICGoL = [float(line.strip()) for line in f]
+
+#get highest framerate
+all = values_CGoL + values_ICGoL + values_LICGoL
+
+highestReachedFPS = max(all)
+"""
+
+# SET SEED 550 writes ----------------------------------------------------------------------------------------------
+
+"""
+#read data
+values_CGoL = []
+with open(r"Source/Conways/Graphs/Data/SetSeed_550/fps_log_CGoL_setseed.txt", "r") as f:
+    values_CGoL = [float(line.strip()) for line in f]
+
+values_ICGoL = []
+with open(r"Source/Conways/Graphs/Data//SetSeed_550/fps_log_ICGoL_setseed.txt", "r") as f:
+    values_ICGoL = [float(line.strip()) for line in f]
+
+values_LICGoL = []
+with open(r"Source/Conways/Graphs/Data//SetSeed_550/fps_log_LICGoL_setseed.txt", "r") as f:
+    values_LICGoL = [float(line.strip()) for line in f]
+
+#get highest framerate
+all = values_CGoL + values_ICGoL + values_LICGoL
+
+highestReachedFPS = max(all)
+"""
+
+# RELEVANT CELL COUNT 1500 writes ----------------------------------------------------------------------------------------------
+
+#read data
+values_CGoL = []
+with open(r"Source/Conways/Graphs/Data/RelevantCellCount/RelevantCellCount_log_CGoL.txt", "r") as f:
+    values_CGoL = [float(line.strip()) for line in f]
+
+values_ICGoL = []
+with open(r"Source/Conways/Graphs/Data//RelevantCellCount/RelevantCellCount_log_ICGoL.txt", "r") as f:
+    values_ICGoL = [float(line.strip()) for line in f]
+
+values_LICGoL = []
+with open(r"Source/Conways/Graphs/Data//RelevantCellCount/RelevantCellCount_log_LICGoL.txt", "r") as f:
     values_LICGoL = [float(line.strip()) for line in f]
 
 #get highest framerate
@@ -64,6 +110,8 @@ all = values_CGoL + values_ICGoL + values_LICGoL
 highestReachedFPS = max(all)
 
 #WHILE LOOP - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+hasSavedImage = False
 
 running = True
 while running:
@@ -94,6 +142,9 @@ while running:
     #displayFPS(screen, 25)
     pygame.display.flip()
     clock.tick(60)
+
+    if not hasSavedImage:
+        pygame.image.save(screen, "Graph.png")
 
     #update delta time
     prevT = currT
