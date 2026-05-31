@@ -7,8 +7,8 @@ both concept will operate during the iteration step where the new cell states ar
 1. irrelevance check
 	"
 	after the cells new state is decided
-		if the cell is live or if any neighbouring cell is live
-			add its coordinates to the next worlds active cells array
+		if the new cell is live or if any neighbouring cell is live
+			add its coordinates and all neighbouring coordinates to the next worlds active cells array
 	"
 	# this method of optimisation basicaly ignores all irrelevant dead cells that do not have any neighbouring live cells
 	# meaning that in a 10x10 world where there is only 1 live cell, only 9 cells are checked in the next frame

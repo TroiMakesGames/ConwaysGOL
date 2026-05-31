@@ -37,7 +37,7 @@ def drawWorld():
 
 def updateWorld(world, active):
     #create next world array
-    nextWorld = [[0 for _ in range(worldHeight)] for _ in range(wolrdWidth)]
+    nextWorld = [row[:] for row in world]   #copy the previous world to the new one - nextWorld = world DOESNT WORK because of copy/reference variable assigning conflicts
     nextActive = set()  #O(1) lookup time compared to normal arrays
 
     #go through each cell and check for rules
@@ -79,8 +79,8 @@ def updateWorld(world, active):
                 nextWorld[x][y] = 1
         #-------------------------------------------------------RULES
 
-        #-------------------------------------------------------Irrelevance check
-        if nextWorld[x][y] == 1:
+        #-------------------------------------------------------Live Irrelevance check
+        if nextWorld[x][y] != world[x][y]:
             for dx, dy in neighbours:
                 nx = (x + dx) % wolrdWidth
                 ny = (y + dy) % worldHeight
@@ -133,7 +133,7 @@ while running:
     if fps > highestFps:
         highestFps = fps
 
-    pygame.display.set_caption(f"Conway's Game of Life - Irrelevance check optimisation | FPS: {fps:.0f} | highestFPS: {highestFps:.0f}")
+    pygame.display.set_caption(f"Conway's Game of Life - Live rrelevance check optimisation | FPS: {fps:.0f} | highestFPS: {highestFps:.0f}")
 
     # Update the display
     pygame.display.flip()

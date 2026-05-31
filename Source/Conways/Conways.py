@@ -5,6 +5,8 @@ import math
 import numpy as np
 import random
 
+import time     #fps display
+
 #------------------------------------------------------------------------------------------------------------------------------------
 #world setup
 wolrdWidth = 250
@@ -85,6 +87,10 @@ def updateWorld(world):
 #initialize 2d arrrays
 world = [[0 for _ in range(worldHeight)] for _ in range(wolrdWidth)]
 
+#track time for fps display
+last_time = time.time()
+highestFps = 0
+
 #randomly gemnerate world
 for i in range(wolrdWidth):
     for j in range(worldHeight):
@@ -107,6 +113,18 @@ while running:
 
     #draw world
     drawWorld()
+
+    #display fps in the window caption
+    current_time = time.time()
+    dt = current_time - last_time
+    last_time = current_time
+
+    fps = 1 / dt if dt > 0 else 0
+
+    if fps > highestFps:
+        highestFps = fps
+
+    pygame.display.set_caption(f"Conway's Game of Life | FPS: {fps:.0f} | highestFPS: {highestFps:.0f}")
 
     # Update the display
     pygame.display.flip()
