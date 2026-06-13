@@ -1,0 +1,38 @@
+intro gif conways gol
+
+noita
+
+slika pravil 1d simple
+slika parih iteracij 1d simple
+slika pravil 1d neki zanimivga
+slika pravil parih iteracij 1d neki zanimivga
+
+slika pravil glede na neighboor count
+slika iteracij v manjši okolici
+
+slika pravil cgol
+gif parih iteracij cgol v manjši okolici
+gif cgol
+
+slika still lives 
+gif 2 period oscilators (2 oscilators)
+gif 3 period scilator (1 oscilator)
+gif 15 period oscilator (1 oscilator)
+gif gliders (3 gliders)
+
+gif cgol inception
+
+gif magma
+gif plants
+
+gif pesek
+gif vode
+gif sandstone layeryou z vodo in peskom
+gif les ogenj dim
+gif led
+
+graf fps default and irelevant check
+graf active cell count default and irelevant check
+
+graf fps all 3
+graf active cell count all 3
