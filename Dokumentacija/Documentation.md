@@ -1,8 +1,20 @@
-[Teoretični uvod](#teoretični-uvod)
-
-[Kaj je celični avtomat?](#kaj-je-celični-avtomat)
-
-[Zaključek](#zaključek)
+## Kazalo
+- [Teoretični uvod](#teoretični-uvod)
+  - [Kaj je celični avtomat?](#kaj-je-celični-avtomat)
+  - [Kako deluje model sistema celičnega avtomata?](#kako-deluje-model-sistema-celičnega-avtomata)
+- [Uporaba celičnega avtomata](#uporaba-celičnega-avtomata)
+- [Predstavitev različnih algoritmov in mojih implementacij](#predstavitev-različnih-algoritmov-in-mojih-implementacij)
+  - [Programska oprema in tehnologije](#programska-oprema-in-tehnologije)
+  - [1 dimenzionalni celični avtomati](#1-dimenzionalni-celični-avtomati)
+  - [2 dimenzionalni celični avtomati](#2-dimenzionalni-celični-avtomati)
+  - [Moje kreacije (Magma in Plants)](#moje-kreacije-magma-in-plants)
+  - [Simulacija snovi](#simulacija-snovi)
+- [Optimizacija Conwayove igre življenja](#optimizacija-conwayove-igre-življenja)
+  - [Prva metoda – Izločanje irelevantnosti](#prva-metoda--izločanje-irelevantnosti)
+  - [Druga metoda – Izločanje žive irelevantnosti](#druga-metoda--izločanje-žive-irelevantnosti)
+  - [Da poenostavim](#da-poenostavim)
+- [Zaključek](#zaključek)
+- [Viri](#viri)
 
 # Teoretični uvod
 ## Kaj je celični avtomat?
