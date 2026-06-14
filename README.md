@@ -28,7 +28,7 @@ Mentor: Klemen Bajec <br>
 ## Kaj je celični avtomat?
 Celični avtomat (angleško »Cellular atuomaton«) je model sistema celičnih objektov, za katerega velja, da vsak objekt ''živi'' na mreži, zato objektom pravimo tudi celice. Vsak model celičnega avtomata deluje po pravilih, ki določajo obnašanje vsake posamezne celice skozi iteracije, torej iz enega stanja v drugo, zato lahko model celičnega avtomata uporabimo kot simulacijo v času.
 
-<img src="./Dokumentacija/Slike/CGoL_intro.gif" style="height:350px; object-fit:contain">
+<div align="center"><img src="./Dokumentacija/Slike/CGoL_intro.gif" style="height:350px; object-fit:contain"></div>
 
 Vsaka celica ima določene lastnosti, ki v večini znanih modelov sledijo tem osnovnim lastnostim:
 - Stanje: vsaka celica ima neko stanje. Lahko je predstavljeno na zelo preprost način npr. eno-bitna vrednost 1 ali 0 ali pa na bolj kompleksen način kot npr. več dimenzionalni vektor. Stanja večih celic v mreži lahko uprizorimo z grafičnim upodabljalnikom in tako ustvarimo nek vzorec ali simulacijo.
@@ -50,7 +50,7 @@ Preprostost delovanja omogoča objektno orientiran način programiranja, kjer pr
 
 - interaktivna umetnost, kjer uporabnika očarajo vzorci simulacije in omogočajo uporabo človeške domišljije. V to skupino spadajo tudi računalniške igrice, pretežno zaradi uporabe sistemov delcev (angleško »particle systems«) in igrice, kjer je svet sestavljen iz celic. Odličen primer računalniške igrice, ki uporablja sisteme celičnih avtomatov, je 'Noita', kjer je vsak pixel v svetu svoja lastna celica, kar omogoča zelo interaktivno in natančno medsebojno obnašanje celic za simuliranje gostote snovi, poškodbe materiala ter širjenje ognja in razjedanje kisline.
 
-<img src="./Dokumentacija/Slike/Noita_title.jpg" style="height:200px; object-fit:contain;"><img src="./Dokumentacija/Slike/Noita.gif" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/Noita_title.jpg" style="height:200px; object-fit:contain;"><img src="./Dokumentacija/Slike/Noita.gif" style="height:200px; object-fit:contain;"></div>
 
 # Predstavitev različnih algoritmov in mojih implementacij
 ## Programska oprema in tehnologije:
@@ -65,22 +65,22 @@ Nato moramo določiti pravila obnašanja celic skozi iteracije. Vsaka celica ima
 
 Tukaj je primer preprostih pravil za tak sistem:
 
-<img src="./Dokumentacija/Slike/1D_rules.png" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/1D_rules.png" style="height:200px; object-fit:contain;"></div>
 
 Ko simuliramo več iteracij se pojavi vzorec: (vsaka nova iteracija je nova vrstica)
 
-<img src="./Dokumentacija/Slike/1D_iterations.png" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/1D_iterations.png" style="height:200px; object-fit:contain;"></div>
 
 Tukaj pa je primer vzorca v realnem svetu, in sicer kot vzorec školjke:
 
-<img src="./Dokumentacija/Slike/shell.png" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/shell.png" style="height:200px; object-fit:contain;"></div>
 
 ## 2 dimenzionalni celični avtomati
 Če 1 dimenzionalnemu sistemu dodamo še eno dimenzijo, lahko mrežo predstavimo kot matrico, kjer ima vsaka celica 8 sosednih celic (9 skupaj z obdelovano), zato obstaja 2**9 oz. 512 različnih možnosti. 
 
 Ker bi določanje pravil za vsako možno konfiguracijo teh devetih celic bilo preveč zahtevno, lahko pravila poenostavimo tako, da namesto vseh možnih konfiguracij samo preštejemo vse žive sosednje celice in tako določimo stanje obdelovane celice v novi iteraciji.
 
-<img src="./Dokumentacija/Slike/CGoL_neighborhood.png" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/CGoL_neighborhood.png" style="height:200px; object-fit:contain;"></div>
 
 Conwayova igra življenja (v originalnih angleških virih poimenovano »Conway's Game of Life«) je sistem 2 dimenzionalnega celičnega avtomata s poenostavljenimi pravili:
 - Živa celica z manj kot dvema živima sosednjima celicama umre
@@ -88,27 +88,27 @@ Conwayova igra življenja (v originalnih angleških virih poimenovano »Conway's
 - Živa celica z več kot tremi živimi sosednjimi celicami umre
 - Mrtva celica s točno tremi živimi sosednjimi celicami se regenerira
 
-<img src="./Dokumentacija/Slike/CGoL_rules.png" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/CGoL_rules.png" style="height:200px; object-fit:contain;"></div>
 
 Ta pravila, ki jih je ustvaril John Conway, so posebna, saj potrebujejo mnogo iteracij, da se ustavijo oz. preidejo v ravnovesje, hkrati pa omogočajo zelo kompleksno obnašanje in zelo nepredvidljive vzorce.
 
-<img src="./Dokumentacija/Slike/CGoL_local.gif" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/CGoL_local.gif" style="height:200px; object-fit:contain;"></div>
 
 Takoj lahko opazimo manjše ponavljajoče vzorce oz. skupnosti celic. Te različne skupnosti je John Conway razdelil na 3 razrede, glede na obnašanje.
 
 ''Tihožitja'' (v angleških virih »still lives«) so skupnosti celic, ki so v ravnovesju in se skozi iteracije ne spremenijo, dokler na njih ne vpliva neka zunanja sprememba.
 
-<img src="./Dokumentacija/Slike/StillLives1.png" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/StillLives2.png" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/StillLives1.png" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/StillLives2.png" style="height:200px; object-fit:contain;"></div>
 
 ''Oscilatorji'' (v angleških virih »oscillators«) so skupnosti celic, ki preko iteracij spreminjajo obliko, a se čez določeno število različnih oblik vrnejo na prvotno stanje. Oscilaorji so lahko zelo preprosti in imajo samo 2 možni stanji, torej potrebujejo 2 iteraciji za celotno zanko, lahko pa so zelo kompleksni in potrebujejo 15 ali več iteracij.
 
-<img src="./Dokumentacija/Slike/Oscilators1.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Oscilators2.gif" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/Oscilators1.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Oscilators2.gif" style="height:200px; object-fit:contain;"></div>
 
-<img src="./Dokumentacija/Slike/Oscilators3.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Oscilators4.gif" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/Oscilators3.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Oscilators4.gif" style="height:200px; object-fit:contain;"></div>
 
 ''Jadralci'' (v angleških virih »gliders«) so skupnosti celic, ki preko iteracij spremenijo obliko in se čez določeno število različnih oblik vrnejo na prvotno stanje, hkrati pa se kot celotna skupnost celic premaknejo v mreži, torej so oscilatorji, ki se premikajo.
 
-<img src="./Dokumentacija/Slike/Gliders1.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Gliders2.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Gliders3.gif" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/Gliders1.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Gliders2.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Gliders3.gif" style="height:200px; object-fit:contain;"></div>
 
 Conwayova preprosta pravila tvorijo tako kompleksen sistem, da velika množica vzorcev še vedno ni bila odkrita. 
 
@@ -121,9 +121,7 @@ Do sedaj sem predstavil simulacije, kjer je stanje celic 1 bitno ''živo'' ali '
 
 V prvi simulaciji mi je uspelo ustvariti efekt magme, ki se topi s časom, v drugi pa efekt rastja rastlin.
 
-<img src="./Dokumentacija/Slike/Magma.gif" style="height:200px; object-fit:contain;">
-
-<img src="./Dokumentacija/Slike/Plants.gif" style="height:200px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/Magma.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Plants.gif" style="height:200px; object-fit:contain;"></div>
 
 ## Simulacija snovi
 Zadnja vrsta sistemov celičnih avtomatov, ki jo bom predstavil, je simulacija snovi. Ta vrsta je uporabljena v igrici ''Noita'', ki sem jo omenil že pri uporabi celičnih avtomatov. Za simulacije snovi je značilno, da stanje celic določa snov celice, kako se ta celica obnaša v praznem prostoru in kako se obnaša pri kontaktu z drugo snovjo.
@@ -132,17 +130,17 @@ Pesek sledi preprostim pravilom:
 
 Če je spodnja celica prazna, se njeno stanje spremeni v pesek, stanje trenutno obdelovane celice pa v prazno celico, to ustvari efekt premikanja celice navzdol. Če je spodnja celica zasedena, pogleda njeno levo in desno sosednjo celico. Če je ena izmed tih dveh prazna, se premakne na drugo, če pa sta obe prazni, naključno izbere eno in se premakne nanj. Če so vse 3 spodnje celice zasedene, se trenutno stanje celice ne spremeni in pesek ostane na miru. Ta preprosta pravila omogočajo, da se pesek enakomerno nabira v trikotno peščeno sipino.
 
-<img src="./Dokumentacija/Slike/Sand.gif" style="height:350px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/Sand.gif" style="height:350px; object-fit:contain;"></div>
 
 Da pridobimo efekt tekočine, lahko uporabimo pravila peska kot osnova. Tekočina, kot na primer voda, naj se obnaša na enak način kot pesek, razen takrat, ko so zasedene vse 3 spodnje celice. V tem primeru celica preveri tudi levo in desno sosednjo celico, ugotovi katera je prazna, in se premakne nanjo. S tem preprostim dodatkom ustvarimo značilno obnašanje tekočine, kjer prehaja proti najnižji točki v lokalni okolici.
 
-<img src="./Dokumentacija/Slike/Water.gif" style="height:350px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/Water.gif" style="height:350px; object-fit:contain;"></div>
 
 Kot sem že omenil v uvodu simulacij snovi, je značilno, da snovi med seboj reagirajo na različne načine. S peskom in vodo lahko ustvarimo novo celico – pesek nabit z vodo – ki se obnaša kot inertna celica, torej se preprosto ne premika in ohranja svoje stanje skozi čas.
 
 Nastanek te nove snovi lahko določimo tako, da pravilom peska dodamo novo pravilo. Kadar je na katerikoli sosednji celici prisotna voda, se obdelovana celica (torej pesek) spremeni v pesek, nabit  vodo. S temi tremi različnimi snovmi in njunimi preprostimi pravili obnašanja že lahko simuliramo geografski nastanek doline Smrti, kjer se z leti nabiranja peska in zalivanja vode ta pesek strdi in ustvari se nova plast trdnega kamenja.
 
-<img src="./Dokumentacija/Slike/SandstoneLayers.gif" style="height:350px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/SandstoneLayers.gif" style="height:350px; object-fit:contain;"></div>
 
 Preko teh medsebojnih odnosov lahko simuliramo tudi les in ogenj, ter nastajajoč dim. Les je preprosta inertna celica, ki ohranja stanje skozi iteracije, z dodanim pravilom, da se ob prisotnosti ognja pretvori v ogenj. Ogenj pa je malo bolj kompleksen. Za obnašanje ognja je značilno, da se premika navzgor, a ne tako hitro kot dim. 
 Da omejimo hitrost premikanja, lahko pri vsaki iteraciji, kjer bi se ogenj pomaknil navzgor, dodamo nekaj učinka naključnosti tako, da z generatorjem naključnega števila med 0 in 1 generiramo neko število in ga primerjamo s številom (npr. 0.8), ki določa kakšna je možnost premika ognja navzgor. Če je generirano število 0.9, meja za premik navzgor pa je 0.8, potem se ogenj premakne navzgor, če pa je generirano število manjše od meje (npr. 0.7), pa ostane na svojem mestu. Tako upodobimo 20% možnost premika ognja navzgor.
@@ -150,11 +148,11 @@ Da omejimo hitrost premikanja, lahko pri vsaki iteraciji, kjer bi se ogenj pomak
 Z uporabo naključnosti lahko simuliramo tudi potrebo ognja po gorivu in tvorbo saj plamena. Vsako iteracijo preverimo naključnost na enak način kot za premikanje, in določimo, ali se ogenj pretvori v celico saj/dima, ali ostane v obliki plamena. Dim se obnaša na podoben način kot tekočine, vendar v nasprotno smer, torej navzgor.
 S temi tremi snovmi in uporabo naključnosti lahko na precej zanimiv način simuliramo njihovo medsebojno obnašanje v realnem svetu.
 
-<img src="./Dokumentacija/Slike/WoodOnFire.gif" style="height:350px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/WoodOnFire.gif" style="height:350px; object-fit:contain;"></div>
 
 Dodamo lahko tudi led, ki je preprosta celica, ki se ohranja skozi čas, a ima vsako iteracijo majhno možnost pretvorbe v vodo. Ta možnost je lahko povečana, kadar je v okolici prisoten ogenj.
 
-<img src="./Dokumentacija/Slike/Ice.gif" style="height:350px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/Ice.gif" style="height:350px; object-fit:contain;"></div>
 
 # Optimizacija Conwayove igre življenja
 2 dimenzionalni celični avtomati v osnovi uporabljajo algoritem s časovno kompleksnostjo O(n**2 * 8), kjer n predstavlja število vseh celic v mreži ( množeno s številom sosednjih celic). (O((w*h)**2 * 8) kadar sta širina w in višina h drugačna).
@@ -176,7 +174,7 @@ Ta pristop omogoča, da so celice, ki se ne spreminjajo v naslednji iteraciji, s
 
 Modro obarvane celice so aktivne / relevantne celice, ki jih znova preračunamo vsako iteracijo
 
-<img src="./Dokumentacija/Slike/CGoL_irrelevance.gif" style="height:350px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/CGoL_irrelevance.gif" style="height:350px; object-fit:contain;"></div>
 
 Metoda izločanja irelevantnosti omogoča, da je originalna časovna kompleksnost tokrat le najvišja možna kompleksnost, in ne osnovna privzeta kompleksnost.
 
@@ -192,7 +190,7 @@ Lahko smo popolnoma prepričani, da se celice, ki ohranjajo svoje stanje skozi 2
 
 Rdeče obarvane celice so aktivne / relevantne celice, ki jih znova preračunamo vsako iteracijo. Tukaj lahko opazimo, da so skupine celic v razredu Tihožitij določene kot neaktivne / irelevantne
 
-<img src="./Dokumentacija/Slike/CGoL_liveirrelevance.gif" style="height:350px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/CGoL_liveirrelevance.gif" style="height:350px; object-fit:contain;"></div>
 
 Tukaj pa je pomembno omeniti še dodatno spremembo. Ker vsakič, ko ustvarimo novo mrežo za naslednjo iteracijo, to mrežo ustvarimo brez nobene vsebine, torej polno praznih celic, pomeni, da so v metodi izločanja živih irelevantnih celic na novi mreži ne obdela teh živih celic in se zato izbrišejo. Tega problema se rešimo tako, da namesto ustvarjanja nove prazne mreže le prilagodimo staro mrežo (kopiramo mrežo in jo spremenimo, torej NE pišemo novih stanj celic na isti mreži, s katere beremo stara stanja).
 Ta metoda je torej nadgradnja prve metode, saj izpusti ne le prazne ''mrtve'' irelevantne celice ampak tudi žive irelevantne celice.
@@ -203,9 +201,7 @@ Optimizaciji sem prikazal na grafu FPS (»frames per second«) v odvisnosti od �
 - modra črta predstavlja simulacijo, ki uporablja prvo metodo
 - rdeča črta pa predstavlja simulacijo, ki uporablja drugo metodo
 
-<img src="./Dokumentacija/Slike/Graph_SetSeed_550.png" style="height:350px; object-fit:contain;">
-
-<img src="./Dokumentacija/Slike/Graph_RelevantCellCount_1500.png" style="height:350px; object-fit:contain;">
+<div align="center"><img src="./Dokumentacija/Slike/Graph_SetSeed_550.png" style="height:350px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Graph_RelevantCellCount_1500.png" style="height:350px; object-fit:contain;"></div>
 
 Opisani metodi delujeta za osnovni algoritem Conwayove igre življenja ali drugih preprostejših 2 dimenzionalnih celičnih avtomatih, kjer pravila delujejo na osnovi števila  8 sosednjih živih celic.
 
