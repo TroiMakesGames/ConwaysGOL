@@ -67,11 +67,11 @@ Tukaj je primer preprostih pravil za tak sistem:
 
 <img src="./Dokumentacija/Slike/1D_rules.png" style="height:200px; object-fit:contain;">
 
-Ko simuliramo več iteracij se pojavi vzorec:
+Ko simuliramo več iteracij se pojavi vzorec: (vsaka nova iteracija je nova vrstica)
 
 <img src="./Dokumentacija/Slike/1D_iterations.png" style="height:200px; object-fit:contain;">
 
-Tukaj je še eden primer preprostih pravil, ki prikažejo bolj zanimiv vzorec:
+Tukaj pa je primer vzorca v realnem svetu, in sicer kot vzorec školjke:
 
 <img src="./Dokumentacija/Slike/shell.png" style="height:200px; object-fit:contain;">
 
@@ -83,6 +83,10 @@ Ker bi določanje pravil za vsako možno konfiguracijo teh devetih celic bilo pr
 <img src="./Dokumentacija/Slike/CGoL_neighborhood.png" style="height:200px; object-fit:contain;">
 
 Conwayova igra življenja (v originalnih angleških virih poimenovano »Conway's Game of Life«) je sistem 2 dimenzionalnega celičnega avtomata s poenostavljenimi pravili:
+- Živa celica z manj kot dvema živima sosednjima celicama umre
+- Živa celica z dvema ali tremi živimi sosednjimi celicami preživi in nadaljuje v naslednjo iteracijo
+- Živa celica z več kot tremi živimi sosednjimi celicami umre
+- Mrtva celica s točno tremi živimi sosednjimi celicami se regenerira
 
 <img src="./Dokumentacija/Slike/CGoL_rules.png" style="height:200px; object-fit:contain;">
 
@@ -94,17 +98,17 @@ Takoj lahko opazimo manjše ponavljajoče vzorce oz. skupnosti celic. Te različ
 
 ''Tihožitja'' (v angleških virih »still lives«) so skupnosti celic, ki so v ravnovesju in se skozi iteracije ne spremenijo, dokler na njih ne vpliva neka zunanja sprememba.
 
-<img src="./Dokumentacija/Slike/StillLives1.png" style="height:200px; object-fit:contain;"><img src="./Dokumentacija/Slike/StillLives2.png" style="height:200px; object-fit:contain;">
+<img src="./Dokumentacija/Slike/StillLives1.png" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/StillLives2.png" style="height:200px; object-fit:contain;">
 
 ''Oscilatorji'' (v angleških virih »oscillators«) so skupnosti celic, ki preko iteracij spreminjajo obliko, a se čez določeno število različnih oblik vrnejo na prvotno stanje. Oscilaorji so lahko zelo preprosti in imajo samo 2 možni stanji, torej potrebujejo 2 iteraciji za celotno zanko, lahko pa so zelo kompleksni in potrebujejo 15 ali več iteracij.
 
-<img src="./Dokumentacija/Slike/Oscilators1.gif" style="height:200px; object-fit:contain;"><img src="./Dokumentacija/Slike/Oscilators2.gif" style="height:200px; object-fit:contain;">
+<img src="./Dokumentacija/Slike/Oscilators1.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Oscilators2.gif" style="height:200px; object-fit:contain;">
 
-<img src="./Dokumentacija/Slike/Oscilators3.gif" style="height:200px; object-fit:contain;"><img src="./Dokumentacija/Slike/Oscilators4.gif" style="height:200px; object-fit:contain;">
+<img src="./Dokumentacija/Slike/Oscilators3.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Oscilators4.gif" style="height:200px; object-fit:contain;">
 
 ''Jadralci'' (v angleških virih »gliders«) so skupnosti celic, ki preko iteracij spremenijo obliko in se čez določeno število različnih oblik vrnejo na prvotno stanje, hkrati pa se kot celotna skupnost celic premaknejo v mreži, torej so oscilatorji, ki se premikajo.
 
-<img src="./Dokumentacija/Slike/Gliders1.gif" style="height:200px; object-fit:contain;"><img src="./Dokumentacija/Slike/Gliders2.gif" style="height:200px; object-fit:contain;"><img src="./Dokumentacija/Slike/Gliders3.gif" style="height:200px; object-fit:contain;">
+<img src="./Dokumentacija/Slike/Gliders1.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Gliders2.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Gliders3.gif" style="height:200px; object-fit:contain;">
 
 Conwayova preprosta pravila tvorijo tako kompleksen sistem, da velika množica vzorcev še vedno ni bila odkrita. 
 
@@ -170,6 +174,8 @@ ko je novo stanje celice odločeno
 
 Ta pristop omogoča, da so celice, ki se ne spreminjajo v naslednji iteraciji, saj nimajo živih sosednjih celic, niso vključene v seznam celic, ki so znova preračunane. Če na grafični upodobitvi prikažemo, katere celice so irelevantne, opazimo, da to vsebuje veliko praznega prostora, ki je v originalni metodi O(n**2 * 8) še vedno bil vključen v preračunanje.
 
+Modro obarvane celice so aktivne / relevantne celice, ki jih znova preračunamo vsako iteracijo
+
 <img src="./Dokumentacija/Slike/CGoL_irrelevance.gif" style="height:350px; object-fit:contain;">
 
 Metoda izločanja irelevantnosti omogoča, da je originalna časovna kompleksnost tokrat le najvišja možna kompleksnost, in ne osnovna privzeta kompleksnost.
@@ -184,12 +190,18 @@ Ko je novo stanje celice določeno
 
 Lahko smo popolnoma prepričani, da se celice, ki ohranjajo svoje stanje skozi 2 iteraciji, ne bodo spremenile (so irelevantne), zato jih lahko izpustimo, tako kot prazen prostor.
 
+Rdeče obarvane celice so aktivne / relevantne celice, ki jih znova preračunamo vsako iteracijo. Tukaj lahko opazimo, da so skupine celic v razredu Tihožitij določene kot neaktivne / irelevantne
+
 <img src="./Dokumentacija/Slike/CGoL_liveirrelevance.gif" style="height:350px; object-fit:contain;">
 
 Tukaj pa je pomembno omeniti še dodatno spremembo. Ker vsakič, ko ustvarimo novo mrežo za naslednjo iteracijo, to mrežo ustvarimo brez nobene vsebine, torej polno praznih celic, pomeni, da so v metodi izločanja živih irelevantnih celic na novi mreži ne obdela teh živih celic in se zato izbrišejo. Tega problema se rešimo tako, da namesto ustvarjanja nove prazne mreže le prilagodimo staro mrežo (kopiramo mrežo in jo spremenimo, torej NE pišemo novih stanj celic na isti mreži, s katere beremo stara stanja).
 Ta metoda je torej nadgradnja prve metode, saj izpusti ne le prazne ''mrtve'' irelevantne celice ampak tudi žive irelevantne celice.
 
-Optimizaciji sem prikazal na grafu FPS (»frames per second«) v odvisnosti od časa ter na grafu Števila aktivnih celic v odvisnosti od časa in ju primerjal z osnovnim algoritmom.
+Optimizaciji sem prikazal na grafu FPS (»frames per second«) v odvisnosti od časa (prva slika) ter na grafu števila aktivnih celic v odvisnosti od časa (druga slika) in ju primerjal z osnovnim algoritmom.
+
+- zelena črta predstavlja simulacijo, ki uporablja osnovni algoritm
+- modra črta predstavlja simulacijo, ki uporablja prvo metodo
+- rdeča črta pa predstavlja simulacijo, ki uporablja drugo metodo
 
 <img src="./Dokumentacija/Slike/Graph_SetSeed_550.png" style="height:350px; object-fit:contain;">
 
