@@ -310,14 +310,14 @@ def spawnInputToggleMaterial(x, y):
 
 currArray = [[0 for i in range(worldWidth)] for j in range(worldHeight)]
 
-for y in range(worldWidth):
+"""for y in range(worldWidth):
     for x in range(len(currArray[y])):
         if y > 40 and x < 119 and y < 60:
             if x%2 == 0:
                 if y%2 == 0:
                     currArray[x+1][y] = 4
                 else:
-                    currArray[x][y] = 4
+                    currArray[x][y] = 4"""
 
 inputToggle = 1
 maxInputToggle = 8
