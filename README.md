@@ -175,9 +175,11 @@ Obe metodi sta nekoliko podobni, saj je druga metoda le nadgradnja prve.
 ## Prva metoda – Izločanje irelevantnosti
 
 Psevdokoda:
+```
 ko je novo stanje celice odločeno
 	če je celica živa ali če je katerakoli sosednja celica živa
 		dodaj pozicijo celice in vseh sosednjih celic v seznam aktivnih celic
+```
 
 [Implementacija: Optimizacija z metodo odstranjevanja irelevantnosti](Source/Conways/Conways_irrelevanceCheck.py)
 
@@ -193,9 +195,11 @@ Metoda izločanja irelevantnosti omogoča, da je originalna časovna kompleksnos
 Metoda izločanja irelevantnih celic je že precej boljša od osnove, a še vedno obstaja možnost za optimizacijo. Ko sem opazoval, katere celice so aktivne, sem opazil, da so vključene tudi skupnosti celic v razredu ''tihožitja'', to so celice, ki skozi iteracije ne spreminjajo stanja.
 
 Psevdokoda:
+```
 Ko je novo stanje celice določeno
 	Če je to novo stanje drugačno od prejšnjega stanja
 		dodaj pozicijo celice in vseh sosednjih celic v seznam aktivnih celic
+```
 
 [Implementacija: Optimizacija z metodo odstranjevanja žive irelevantnosti](Source/Conways/Conways_liveIrrelevanceCheck.py)
 
