@@ -28,7 +28,7 @@ Mentor: Klemen Bajec <br>
 ## Kaj je celični avtomat?
 Celični avtomat (angleško »Cellular atuomaton«) je model sistema celičnih objektov, za katerega velja, da vsak objekt ''živi'' na mreži, zato objektom pravimo tudi celice. Vsak model celičnega avtomata deluje po pravilih, ki določajo obnašanje vsake posamezne celice skozi iteracije, torej iz enega stanja v drugo, zato lahko model celičnega avtomata uporabimo kot simulacijo v času.
 
-![Uvod v Conwayovo igro življenja](Source/Recordings/Shots/CGoL_intro.gif)
+<img src="./Slike/CGoL_intro.gif" width="500">
 
 Vsaka celica ima določene lastnosti, ki v večini znanih modelov sledijo tem osnovnim lastnostim:
 - Stanje: vsaka celica ima neko stanje. Lahko je predstavljeno na zelo preprost način npr. eno-bitna vrednost 1 ali 0 ali pa na bolj kompleksen način kot npr. več dimenzionalni vektor. Stanja večih celic v mreži lahko uprizorimo z grafičnim upodabljalnikom in tako ustvarimo nek vzorec ali simulacijo.
