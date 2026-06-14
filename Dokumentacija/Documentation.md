@@ -1,3 +1,9 @@
+[Teoretični uvod](#teoretični-uvod)
+
+[Kaj je celični avtomat?](#kaj-je-celični-avtomat)
+
+[Zaključek](#zaključek)
+
 # Teoretični uvod
 ## Kaj je celični avtomat?
 Celični avtomat (angleško »Cellular atuomaton«) je model sistema celičnih objektov, za katerega velja, da vsak objekt ''živi'' na mreži, zato objektom pravimo tudi celice. Vsak model celičnega avtomata deluje po pravilih, ki določajo obnašanje vsake posamezne celice skozi iteracije, torej iz enega stanja v drugo, zato lahko model celičnega avtomata uporabimo kot simulacijo v času.
