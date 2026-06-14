@@ -214,7 +214,7 @@ Ta metoda je torej nadgradnja prve metode, saj izpusti ne le prazne ''mrtve'' ir
 
 Optimizaciji sem prikazal na grafu FPS (»frames per second«) v odvisnosti od časa (prva slika) ter na grafu števila aktivnih celic v odvisnosti od časa (druga slika) in ju primerjal z osnovnim algoritmom.
 
-- zelena črta predstavlja simulacijo, ki uporablja osnovni algoritm
+- zelena črta predstavlja simulacijo, ki uporablja osnovni algoritem
 - modra črta predstavlja simulacijo, ki uporablja prvo metodo
 - rdeča črta pa predstavlja simulacijo, ki uporablja drugo metodo
 
