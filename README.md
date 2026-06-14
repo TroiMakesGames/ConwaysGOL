@@ -130,17 +130,17 @@ Pesek sledi preprostim pravilom:
 
 Če je spodnja celica prazna, se njeno stanje spremeni v pesek, stanje trenutno obdelovane celice pa v prazno celico, to ustvari efekt premikanja celice navzdol. Če je spodnja celica zasedena, pogleda njeno levo in desno sosednjo celico. Če je ena izmed tih dveh prazna, se premakne na drugo, če pa sta obe prazni, naključno izbere eno in se premakne nanj. Če so vse 3 spodnje celice zasedene, se trenutno stanje celice ne spremeni in pesek ostane na miru. Ta preprosta pravila omogočajo, da se pesek enakomerno nabira v trikotno peščeno sipino.
 
----gif pesek---
+<img src="./Dokumentacija/Slike/Sand.gif" height="350">
 
 Da pridobimo efekt tekočine, lahko uporabimo pravila peska kot osnova. Tekočina, kot na primer voda, naj se obnaša na enak način kot pesek, razen takrat, ko so zasedene vse 3 spodnje celice. V tem primeru celica preveri tudi levo in desno sosednjo celico, ugotovi katera je prazna, in se premakne nanjo. S tem preprostim dodatkom ustvarimo značilno obnašanje tekočine, kjer prehaja proti najnižji točki v lokalni okolici.
 
----gif vode---
+<img src="./Dokumentacija/Slike/Water.gif" height="350">
 
 Kot sem že omenil v uvodu simulacij snovi, je značilno, da snovi med seboj reagirajo na različne načine. S peskom in vodo lahko ustvarimo novo celico – pesek nabit z vodo – ki se obnaša kot inertna celica, torej se preprosto ne premika in ohranja svoje stanje skozi čas.
 
 Nastanek te nove snovi lahko določimo tako, da pravilom peska dodamo novo pravilo. Kadar je na katerikoli sosednji celici prisotna voda, se obdelovana celica (torej pesek) spremeni v pesek, nabit  vodo. S temi tremi različnimi snovmi in njunimi preprostimi pravili obnašanja že lahko simuliramo geografski nastanek doline Smrti, kjer se z leti nabiranja peska in zalivanja vode ta pesek strdi in ustvari se nova plast trdnega kamenja.
 
----gif sandstone layers---
+<img src="./Dokumentacija/Slike/SandstoneLayers.gif" height="350">
 
 Preko teh medsebojnih odnosov lahko simuliramo tudi les in ogenj, ter nastajajoč dim. Les je preprosta inertna celica, ki ohranja stanje skozi iteracije, z dodanim pravilom, da se ob prisotnosti ognja pretvori v ogenj. Ogenj pa je malo bolj kompleksen. Za obnašanje ognja je značilno, da se premika navzgor, a ne tako hitro kot dim. 
 Da omejimo hitrost premikanja, lahko pri vsaki iteraciji, kjer bi se ogenj pomaknil navzgor, dodamo nekaj učinka naključnosti tako, da z generatorjem naključnega števila med 0 in 1 generiramo neko število in ga primerjamo s številom (npr. 0.8), ki določa kakšna je možnost premika ognja navzgor. Če je generirano število 0.9, meja za premik navzgor pa je 0.8, potem se ogenj premakne navzgor, če pa je generirano število manjše od meje (npr. 0.7), pa ostane na svojem mestu. Tako upodobimo 20% možnost premika ognja navzgor.
@@ -148,11 +148,11 @@ Da omejimo hitrost premikanja, lahko pri vsaki iteraciji, kjer bi se ogenj pomak
 Z uporabo naključnosti lahko simuliramo tudi potrebo ognja po gorivu in tvorbo saj plamena. Vsako iteracijo preverimo naključnost na enak način kot za premikanje, in določimo, ali se ogenj pretvori v celico saj/dima, ali ostane v obliki plamena. Dim se obnaša na podoben način kot tekočine, vendar v nasprotno smer, torej navzgor.
 S temi tremi snovmi in uporabo naključnosti lahko na precej zanimiv način simuliramo njihovo medsebojno obnašanje v realnem svetu.
 
----gif les, ogenj, dim---
+<img src="./Dokumentacija/Slike/WoodOnFire.gif" height="350">
 
 Dodamo lahko tudi led, ki je preprosta celica, ki se ohranja skozi čas, a ima vsako iteracijo majhno možnost pretvorbe v vodo. Ta možnost je lahko povečana, kadar je v okolici prisoten ogenj.
 
----gif led---
+<img src="./Dokumentacija/Slike/Ice.gif" height="350">
 
 # Optimizacija Conwayove igre življenja
 2 dimenzionalni celični avtomati v osnovi uporabljajo algoritem s časovno kompleksnostjo O(n**2 * 8), kjer n predstavlja število vseh celic v mreži ( množeno s številom sosednjih celic). (O((w*h)**2 * 8) kadar sta širina w in višina h drugačna).
@@ -172,14 +172,9 @@ ko je novo stanje celice odločeno
 
 Ta pristop omogoča, da so celice, ki se ne spreminjajo v naslednji iteraciji, saj nimajo živih sosednjih celic, niso vključene v seznam celic, ki so znova preračunane. Če na grafični upodobitvi prikažemo, katere celice so irelevantne, opazimo, da to vsebuje veliko praznega prostora, ki je v originalni metodi O(n**2 * 8) še vedno bil vključen v preračunanje.
 
----slika CGoL kjer so obarvane irelevantne celice---
+<img src="./Dokumentacija/Slike/CGoL_irrelevance.gif" height="350">
 
 Metoda izločanja irelevantnosti omogoča, da je originalna časovna kompleksnost tokrat le najvišja možna kompleksnost, in ne osnovna privzeta kompleksnost.
-Optimizacijo sem prikazal na grafu FPS (»frames per second«) v odvisnosti od časa ter na grafu Števila aktivnih celic v odvisnosti od časa in jo primerjal z osnovnim algoritmom.
-
----graf FPS, default and irelevant check---
-
----graf active cell count, default and irelevant check---
 
 ## Druga metoda – Izločanje žive irelevantnosti
 Metoda izločanja irelevantnih celic je že precej boljša od osnove, a še vedno obstaja možnost za optimizacijo. Ko sem opazoval, katere celice so aktivne, sem opazil, da so vključene tudi skupnosti celic v razredu ''tihožitja'', to so celice, ki skozi iteracije ne spreminjajo stanja.
@@ -191,16 +186,16 @@ Ko je novo stanje celice določeno
 
 Lahko smo popolnoma prepričani, da se celice, ki ohranjajo svoje stanje skozi 2 iteraciji, ne bodo spremenile (so irelevantne), zato jih lahko izpustimo, tako kot prazen prostor.
 
----slika CGoL kjer so obarvane tudi žive irelevantne celice---
+<img src="./Dokumentacija/Slike/CGoL_liveirrelevance.gif" height="350">
 
 Tukaj pa je pomembno omeniti še dodatno spremembo. Ker vsakič, ko ustvarimo novo mrežo za naslednjo iteracijo, to mrežo ustvarimo brez nobene vsebine, torej polno praznih celic, pomeni, da so v metodi izločanja živih irelevantnih celic na novi mreži ne obdela teh živih celic in se zato izbrišejo. Tega problema se rešimo tako, da namesto ustvarjanja nove prazne mreže le prilagodimo staro mrežo (kopiramo mrežo in jo spremenimo, torej NE pišemo novih stanj celic na isti mreži, s katere beremo stara stanja).
 Ta metoda je torej nadgradnja prve metode, saj izpusti ne le prazne ''mrtve'' irelevantne celice ampak tudi žive irelevantne celice.
 
-Optimizacijo sem prikazal na grafu FPS (»frames per second«) v odvisnosti od časa ter na grafu Števila aktivnih celic v odvisnosti od časa in jo primerjal z osnovnim algoritmom in prvo metodo.
+Optimizaciji sem prikazal na grafu FPS (»frames per second«) v odvisnosti od časa ter na grafu Števila aktivnih celic v odvisnosti od časa in ju primerjal z osnovnim algoritmom.
 
----graf FPS, default , irelevant check and live irelevant check---
+<img src="./Dokumentacija/Slike/Graph_SetSeed_550.png" height="350">
 
----graf active cell count, default ,irelevant check and live irelevant check---
+<img src="./Dokumentacija/Slike/Graph_RelevantCellCount_1500.png" height="350">
 
 Opisani metodi delujeta za osnovni algoritem Conwayove igre življenja ali drugih preprostejših 2 dimenzionalnih celičnih avtomatih, kjer pravila delujejo na osnovi števila  8 sosednjih živih celic.
 
