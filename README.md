@@ -28,7 +28,7 @@ Mentor: Klemen Bajec <br>
 ## Kaj je celični avtomat?
 Celični avtomat (angleško »Cellular atuomaton«) je model sistema celičnih objektov, za katerega velja, da vsak objekt ''živi'' na mreži, zato objektom pravimo tudi celice. Vsak model celičnega avtomata deluje po pravilih, ki določajo obnašanje vsake posamezne celice skozi iteracije, torej iz enega stanja v drugo, zato lahko model celičnega avtomata uporabimo kot simulacijo v času.
 
-<img src="./Slike/CGoL_intro.gif" width="500">
+<img src="./Dokumentacija/Slike/CGoL_intro.gif" height="350">
 
 Vsaka celica ima določene lastnosti, ki v večini znanih modelov sledijo tem osnovnim lastnostim:
 - Stanje: vsaka celica ima neko stanje. Lahko je predstavljeno na zelo preprost način npr. eno-bitna vrednost 1 ali 0 ali pa na bolj kompleksen način kot npr. več dimenzionalni vektor. Stanja večih celic v mreži lahko uprizorimo z grafičnim upodabljalnikom in tako ustvarimo nek vzorec ali simulacijo.
@@ -50,7 +50,7 @@ Preprostost delovanja omogoča objektno orientiran način programiranja, kjer pr
 
 - interaktivna umetnost, kjer uporabnika očarajo vzorci simulacije in omogočajo uporabo človeške domišljije. V to skupino spadajo tudi računalniške igrice, pretežno zaradi uporabe sistemov delcev (angleško »particle systems«) in igrice, kjer je svet sestavljen iz celic. Odličen primer računalniške igrice, ki uporablja sisteme celičnih avtomatov, je 'Noita', kjer je vsak pixel v svetu svoja lastna celica, kar omogoča zelo interaktivno in natančno medsebojno obnašanje celic za simuliranje gostote snovi, poškodbe materiala ter širjenje ognja in razjedanje kisline.
 
----something for noita---
+<img src="./Dokumentacija/Slike/Noita_title.jpg" height="350"><img src="./Dokumentacija/Slike/Noita.gif" height="350">
 
 # Predstavitev različnih algoritmov in mojih implementacij
 ## Programska oprema in tehnologije:
@@ -65,69 +65,63 @@ Nato moramo določiti pravila obnašanja celic skozi iteracije. Vsaka celica ima
 
 Tukaj je primer preprostih pravil za tak sistem:
 
----slika pravil---
+<img src="./Dokumentacija/Slike/1D_rules.png" height="350">
 
 Ko simuliramo več iteracij se pojavi vzorec:
 
----slika parih iteracij---
+<img src="./Dokumentacija/Slike/1D_iterations.png" height="350">
 
 Tukaj je še eden primer preprostih pravil, ki prikažejo bolj zanimiv vzorec:
 
----slika pravil 2---
-
----slika večih iteracij pravil 2---
+<img src="./Dokumentacija/Slike/shell.png" height="350">
 
 ## 2 dimenzionalni celični avtomati
 Če 1 dimenzionalnemu sistemu dodamo še eno dimenzijo, lahko mrežo predstavimo kot matrico, kjer ima vsaka celica 8 sosednih celic (9 skupaj z obdelovano), zato obstaja 2**9 oz. 512 različnih možnosti. 
 
 Ker bi določanje pravil za vsako možno konfiguracijo teh devetih celic bilo preveč zahtevno, lahko pravila poenostavimo tako, da namesto vseh možnih konfiguracij samo preštejemo vse žive sosednje celice in tako določimo stanje obdelovane celice v novi iteraciji.
 
----slika pravil glede na neighbor count---
-
----slika iteracij v manjši okolici---
+<img src="./Dokumentacija/Slike/CGoL_neighborhood.png" height="350">
 
 Conwayova igra življenja (v originalnih angleških virih poimenovano »Conway's Game of Life«) je sistem 2 dimenzionalnega celičnega avtomata s poenostavljenimi pravili:
 
----slika pravil CGoL---
-
----slika iteracij v manjši okolici---
+<img src="./Dokumentacija/Slike/CGoL_rules.png" height="350">
 
 Ta pravila, ki jih je ustvaril John Conway, so posebna, saj potrebujejo mnogo iteracij, da se ustavijo oz. preidejo v ravnovesje, hkrati pa omogočajo zelo kompleksno obnašanje in zelo nepredvidljive vzorce.
 
----gif CGoL---
+<img src="./Dokumentacija/Slike/CGoL_local.gif" height="350">
 
 Takoj lahko opazimo manjše ponavljajoče vzorce oz. skupnosti celic. Te različne skupnosti je John Conway razdelil na 3 razrede, glede na obnašanje.
 
 ''Tihožitja'' (v angleških virih »still lives«) so skupnosti celic, ki so v ravnovesju in se skozi iteracije ne spremenijo, dokler na njih ne vpliva neka zunanja sprememba.
 
----slika still lives skupnosti---
+<img src="./Dokumentacija/Slike/StillLives1.png" height="350"><img src="./Dokumentacija/Slike/StillLives2.png" height="350">
 
 ''Oscilatorji'' (v angleških virih »oscillators«) so skupnosti celic, ki preko iteracij spreminjajo obliko, a se čez določeno število različnih oblik vrnejo na prvotno stanje. Oscilaorji so lahko zelo preprosti in imajo samo 2 možni stanji, torej potrebujejo 2 iteraciji za celotno zanko, lahko pa so zelo kompleksni in potrebujejo 15 ali več iteracij.
 
----gif deh 2 period oscilators---
+<img src="./Dokumentacija/Slike/Oscilators1.gif" height="350"><img src="./Dokumentacija/Slike/Oscilators2.gif" height="350">
 
----gif preiod 3---
+<img src="./Dokumentacija/Slike/Oscilators3.gif" height="350">
 
----gif period 15---
+<img src="./Dokumentacija/Slike/Oscilators4.gif" height="350">
 
 ''Jadralci'' (v angleških virih »gliders«) so skupnosti celic, ki preko iteracij spremenijo obliko in se čez določeno število različnih oblik vrnejo na prvotno stanje, hkrati pa se kot celotna skupnost celic premaknejo v mreži, torej so oscilatorji, ki se premikajo.
 
----gif 3 gliderjev---
+<img src="./Dokumentacija/Slike/Gliders1.gif" height="350"><img src="./Dokumentacija/Slike/Gliders2.gif" height="350"><img src="./Dokumentacija/Slike/Gliders3.gif" height="350">
 
 Conwayova preprosta pravila tvorijo tako kompleksen sistem, da velika množica vzorcev še vedno ni bila odkrita. 
 
 Raziskovalci so odkrili tudi druge razrede, kot na primer vzorec skupnosti celic, ki sestavlja več jadralcev in so celo uspeli ustvariti logična vrata, kjer so jadralci uporabljeni kot pretok informacij med temi logičnimi vrati. To pomeni, da bi v teoriji lahko ustvarili prvotno stanje celic, ki bi simuliralo samo Conwayovo simulacijo, torej bi imeli simulacijo znotraj simulacije.
 
----gif CGoL inception---
+[Phillip Bradbury : Life in life](https://www.youtube.com/watch?v=xP5-iIeKXE8)
 
 ## Moje kreacije (Magma in Plants)
 Do sedaj sem predstavil simulacije, kjer je stanje celic 1 bitno ''živo'' ali ''mrtvo'', toda sistem nam omogoča veliko več kreativnosti. V svojih dveh implementacijah, ki sem ju poimenoval ''Magma'' in ''Plants'' sem stanje predstavil kot celo število med 0 in 255, torej 8 bitno število. To mi je omogočilo, da stanje celice upodobim z RGB barvnim formatom, kjer je barva sestavljena iz treh 8-bitnih kanalov osnovnih barv, to so rdeča, zelena in modra. Za pravila pa sem opazoval vsoto intenzivnosti življenja oz. vsoto vseh stanj sosednjih celic in ga primerjal z neko konstantno mejo. Glede na primerjavo intenzivnosti življenja sosednih celic in teh konstantnih mej, sem originalno stanje pomnožil s faktorjem in tako pridobil novo stanje.
 
 V prvi simulaciji mi je uspelo ustvariti efekt magme, ki se topi s časom, v drugi pa efekt rastja rastlin.
 
----gif magme---
+<img src="./Dokumentacija/Slike/Magma.gif" height="350">
 
----gif plants---
+<img src="./Dokumentacija/Slike/Plants.gif" height="350">
 
 ## Simulacija snovi
 Zadnja vrsta sistemov celičnih avtomatov, ki jo bom predstavil, je simulacija snovi. Ta vrsta je uporabljena v igrici ''Noita'', ki sem jo omenil že pri uporabi celičnih avtomatov. Za simulacije snovi je značilno, da stanje celic določa snov celice, kako se ta celica obnaša v praznem prostoru in kako se obnaša pri kontaktu z drugo snovjo.
