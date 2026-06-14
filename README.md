@@ -209,6 +209,10 @@ Rdeče obarvane celice so aktivne / relevantne celice, ki jih znova preračunamo
 
 <div align="center"><img src="./Dokumentacija/Slike/CGoL_liveirrelevance.gif" style="height:350px; object-fit:contain;"></div>
 
+Če primerjamo obe metodi optimizacije na isti iteraciji iste simulacije, opazimo, da je v drugem primeru veliko manj aktivnih celic, torej manj potrebnega računanja
+
+<div align="center"><img src="./Dokumentacija/Slike/Irrelevance_active.png" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/LiveIrrelevance_active.png" style="height:200px; object-fit:contain;"></div>
+
 Tukaj pa je pomembno omeniti še dodatno spremembo. Ker vsakič, ko ustvarimo novo mrežo za naslednjo iteracijo, to mrežo ustvarimo brez nobene vsebine, torej polno praznih celic, pomeni, da so v metodi izločanja živih irelevantnih celic na novi mreži ne obdela teh živih celic in se zato izbrišejo. Tega problema se rešimo tako, da namesto ustvarjanja nove prazne mreže le prilagodimo staro mrežo (kopiramo mrežo in jo spremenimo, torej NE pišemo novih stanj celic na isti mreži, s katere beremo stara stanja).
 Ta metoda je torej nadgradnja prve metode, saj izpusti ne le prazne ''mrtve'' irelevantne celice ampak tudi žive irelevantne celice.
 
