@@ -1,3 +1,11 @@
+# Conwayova igra življenja in drugi celični avtomati
+
+predstavitev projektne naloge pri izbirnem maturitetnem pouku informatike v tretjem letniku gimnazije
+
+Gimnazija Vič <br>
+Avtor: Gašper Korošec, 3.B <br>
+Mentor: Klemen Bajec <br>
+
 ## Kazalo
 - [Teoretični uvod](#teoretični-uvod)
   - [Kaj je celični avtomat?](#kaj-je-celični-avtomat)
