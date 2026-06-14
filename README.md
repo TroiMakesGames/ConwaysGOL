@@ -222,7 +222,7 @@ Optimizaciji sem prikazal na grafu FPS (»frames per second«) v odvisnosti od �
 - modra črta predstavlja simulacijo, ki uporablja prvo metodo
 - rdeča črta pa predstavlja simulacijo, ki uporablja drugo metodo
 
-<div align="center"><img src="./Dokumentacija/Slike/Graph_SetSeed_550.png" style="height:350px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Graph_RelevantCellCount_1500.png" style="height:350px; object-fit:contain;"></div>
+<div align="center"><img src="./Dokumentacija/Slike/Graph_SetSeed_550.png" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Graph_RelevantCellCount_1500.png" style="height:200px; object-fit:contain;"></div>
 
 Opisani metodi delujeta za osnovni algoritem Conwayove igre življenja ali drugih preprostejših 2 dimenzionalnih celičnih avtomatih, kjer pravila delujejo na osnovi števila  8 sosednjih živih celic.
 
