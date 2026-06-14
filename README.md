@@ -76,6 +76,9 @@ Tukaj pa je primer vzorca v realnem svetu, in sicer kot vzorec školjke:
 <div align="center"><img src="./Dokumentacija/Slike/shell.png" style="height:200px; object-fit:contain;"></div>
 
 ## 2 dimenzionalni celični avtomati
+
+[Implementacija: Conwayova igra življenja](Source/Conways/Conways.py)
+
 Če 1 dimenzionalnemu sistemu dodamo še eno dimenzijo, lahko mrežo predstavimo kot matrico, kjer ima vsaka celica 8 sosednih celic (9 skupaj z obdelovano), zato obstaja 2**9 oz. 512 različnih možnosti. 
 
 Ker bi določanje pravil za vsako možno konfiguracijo teh devetih celic bilo preveč zahtevno, lahko pravila poenostavimo tako, da namesto vseh možnih konfiguracij samo preštejemo vse žive sosednje celice in tako določimo stanje obdelovane celice v novi iteraciji.
@@ -117,6 +120,9 @@ Raziskovalci so odkrili tudi druge razrede, kot na primer vzorec skupnosti celic
 [Phillip Bradbury : Life in life](https://www.youtube.com/watch?v=xP5-iIeKXE8)
 
 ## Moje kreacije (Magma in Plants)
+
+[Implementacija: Pravila po meri](Source/CustomRules)
+
 Do sedaj sem predstavil simulacije, kjer je stanje celic 1 bitno ''živo'' ali ''mrtvo'', toda sistem nam omogoča veliko več kreativnosti. V svojih dveh implementacijah, ki sem ju poimenoval ''Magma'' in ''Plants'' sem stanje predstavil kot celo število med 0 in 255, torej 8 bitno število. To mi je omogočilo, da stanje celice upodobim z RGB barvnim formatom, kjer je barva sestavljena iz treh 8-bitnih kanalov osnovnih barv, to so rdeča, zelena in modra. Za pravila pa sem opazoval vsoto intenzivnosti življenja oz. vsoto vseh stanj sosednjih celic in ga primerjal z neko konstantno mejo. Glede na primerjavo intenzivnosti življenja sosednih celic in teh konstantnih mej, sem originalno stanje pomnožil s faktorjem in tako pridobil novo stanje.
 
 V prvi simulaciji mi je uspelo ustvariti efekt magme, ki se topi s časom, v drugi pa efekt rastja rastlin.
@@ -124,6 +130,9 @@ V prvi simulaciji mi je uspelo ustvariti efekt magme, ki se topi s časom, v dru
 <div align="center"><img src="./Dokumentacija/Slike/Magma.gif" style="height:200px; object-fit:contain;">  <img src="./Dokumentacija/Slike/Plants.gif" style="height:200px; object-fit:contain;"></div>
 
 ## Simulacija snovi
+
+[Implementacija: Simulacija snovi](Source/CellularWorld/main.py)
+
 Zadnja vrsta sistemov celičnih avtomatov, ki jo bom predstavil, je simulacija snovi. Ta vrsta je uporabljena v igrici ''Noita'', ki sem jo omenil že pri uporabi celičnih avtomatov. Za simulacije snovi je značilno, da stanje celic določa snov celice, kako se ta celica obnaša v praznem prostoru in kako se obnaša pri kontaktu z drugo snovjo.
  Najpogosteje je implementiran pesek, saj pravila obnašanja na zelo preprost način imitirajo realno akumulacijo peska v peščene sipine.
 Pesek sledi preprostim pravilom:
@@ -170,6 +179,8 @@ ko je novo stanje celice odločeno
 	če je celica živa ali če je katerakoli sosednja celica živa
 		dodaj pozicijo celice in vseh sosednjih celic v seznam aktivnih celic
 
+[Implementacija: Optimizacija z metodo odstranjevanja irelevantnosti](Source/Conways/Conways_irrelevanceCheck.py)
+
 Ta pristop omogoča, da so celice, ki se ne spreminjajo v naslednji iteraciji, saj nimajo živih sosednjih celic, niso vključene v seznam celic, ki so znova preračunane. Če na grafični upodobitvi prikažemo, katere celice so irelevantne, opazimo, da to vsebuje veliko praznega prostora, ki je v originalni metodi O(n**2 * 8) še vedno bil vključen v preračunanje.
 
 Modro obarvane celice so aktivne / relevantne celice, ki jih znova preračunamo vsako iteracijo
@@ -185,6 +196,8 @@ Psevdokoda:
 Ko je novo stanje celice določeno
 	Če je to novo stanje drugačno od prejšnjega stanja
 		dodaj pozicijo celice in vseh sosednjih celic v seznam aktivnih celic
+
+[Implementacija: Optimizacija z metodo odstranjevanja žive irelevantnosti](Source/Conways/Conways_liveIrrelevanceCheck.py)
 
 Lahko smo popolnoma prepričani, da se celice, ki ohranjajo svoje stanje skozi 2 iteraciji, ne bodo spremenile (so irelevantne), zato jih lahko izpustimo, tako kot prazen prostor.
 
