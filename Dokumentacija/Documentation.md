@@ -229,3 +229,5 @@ Wikipedija: Celični avtomati - https://en.wikipedia.org/wiki/Cellular_automaton
 Wikipedija: Conwayova igra življenja - https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 Daniel Shiffman : ''Nature of code'' - https://natureofcode.com/
+
+Phillip Bradbury : ''Life in life'' - https://www.youtube.com/watch?v=xP5-iIeKXE8
