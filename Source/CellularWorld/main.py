@@ -23,30 +23,38 @@ def displayFPS(screen, fontSize):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-def drawWorld(currArray):
+def drawWorld(currArray, inputToggle):
     tileWidth = screenWidth/worldWidth
     tileHeight = screenHeight/worldHeight
+
+    indexColors = [(30, 30, 30), (255, 255, 0), (100, 100, 255), (155, 155, 155), (70, 70, 70), (150, 128, 0), (150, 50, 0), (125, 125, 255), (random.randint(150, 255), random.randint(0, 50), 0)]
 
     for x in range(worldWidth):
         for y in range(worldHeight):
             if currArray[x][y] == 0:    #air
-                pygame.draw.rect(screen, (30, 30, 30), pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+                pygame.draw.rect(screen, indexColors[0], pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
             if currArray[x][y] == 1:    #sand
-                pygame.draw.rect(screen, (255, 255, 0), pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+                pygame.draw.rect(screen, indexColors[1], pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
             if currArray[x][y] == 2:    #water
-                pygame.draw.rect(screen, (100, 100, 255), pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+                pygame.draw.rect(screen, indexColors[2], pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
             if currArray[x][y] == 3:    #smoke
-                pygame.draw.rect(screen, (155, 155, 155), pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+                pygame.draw.rect(screen, indexColors[3], pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
             if currArray[x][y] == 4:    #stone
-                pygame.draw.rect(screen, (70, 70, 70), pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+                pygame.draw.rect(screen, indexColors[4], pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
             if currArray[x][y] == 5:    #clay
-                pygame.draw.rect(screen, (150, 128, 0), pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+                pygame.draw.rect(screen, indexColors[5], pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
             if currArray[x][y] == 6:    #wood
-                pygame.draw.rect(screen, (150, 50, 0), pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+                pygame.draw.rect(screen, indexColors[6], pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
             if currArray[x][y] == 7:    #ice
-                pygame.draw.rect(screen, (125, 125, 255), pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+                pygame.draw.rect(screen, indexColors[7], pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
             if currArray[x][y] == 8:    #fire
-                pygame.draw.rect(screen, (random.randint(150, 255), random.randint(0, 50), 0), pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+                pygame.draw.rect(screen, indexColors[8], pygame.Rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight))
+
+    #draw selected material
+    margin = 5
+    selectedCellRectSize = 20
+    pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(screenWidth - (selectedCellRectSize + margin), 0, (selectedCellRectSize + margin), (selectedCellRectSize + margin)))
+    pygame.draw.rect(screen, indexColors[inputToggle], pygame.Rect(screenWidth - selectedCellRectSize - margin/2, margin / 2, selectedCellRectSize, selectedCellRectSize))
 
 
 def generateNewArray(currArray):
@@ -179,7 +187,7 @@ def generateNewArray(currArray):
             if currArray[x][y] == 3:
 
                 #randomly disappear
-                if random.randint(0, 30) == 1:
+                if random.randint(0, 100) == 1:
                     newArray[x][y] = 0
                 else:
 
@@ -313,11 +321,23 @@ while running:
             running = False
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if pygame.mouse.get_pressed(3)[2]:
+
+            #scrollwheel
+            if event.button == 4:
+                inputToggle -= 1
+            elif event.button == 5:
                 inputToggle += 1
 
+            #right click
+            if pygame.mouse.get_pressed(3)[2]:
+                inputToggle += 1
                 if inputToggle > maxInputToggle:
-                    inputToggle = 1
+                    inputToggle = 0
+
+            if inputToggle > maxInputToggle:
+                inputToggle = maxInputToggle
+            if inputToggle < 1:
+                inputToggle = 1
                 
     if pygame.mouse.get_pressed(3)[0]:
         spawnOnMouse()
@@ -325,7 +345,7 @@ while running:
     screen.fill((20, 20, 20))
 
     #draw current
-    drawWorld(currArray)
+    drawWorld(currArray, inputToggle)
 
     #generate new and apply
     currArray = generateNewArray(currArray)
