@@ -5,9 +5,9 @@ Celični avtomat (angleško »Cellular atuomaton«) je model sistema celičnih o
 ---intro gif conways gol---
 
 Vsaka celica ima določene lastnosti, ki v večini znanih modelov sledijo tem osnovnim lastnostim:
-	- Stanje: vsaka celica ima neko stanje. Lahko je predstavljeno na zelo preprost način npr. eno-bitna vrednost 1 ali 0 ali pa na bolj kompleksen način kot npr. več dimenzionalni vektor. Stanja večih celic v mreži lahko uprizorimo z grafičnim upodabljalnikom in tako ustvarimo nek vzorec ali simulacijo.
-	- Okolica (v angleških virih uporabljena beseda »neighborhood«): Vsaka celica ima določeno ''vidno''  razdaljo oz. polje bližnjih celic. To so celice, preko katerih lahko iz enega stanja preračunamo naslednje stanje celice z uporabo pravil modela celičnega avtomata.
-	- Pozicija na mreži
+- Stanje: vsaka celica ima neko stanje. Lahko je predstavljeno na zelo preprost način npr. eno-bitna vrednost 1 ali 0 ali pa na bolj kompleksen način kot npr. več dimenzionalni vektor. Stanja večih celic v mreži lahko uprizorimo z grafičnim upodabljalnikom in tako ustvarimo nek vzorec ali simulacijo.
+- Okolica (v angleških virih uporabljena beseda »neighborhood«): Vsaka celica ima določeno ''vidno''  razdaljo oz. polje bližnjih celic. To so celice, preko katerih lahko iz enega stanja preračunamo naslednje stanje celice z uporabo pravil modela celičnega avtomata.
+- Pozicija na mreži
 
 ## Kako deluje model sistema celičnega avtomata?
 Osnovni proces delovanja modela celičnega avtomata sledi preprostim osnovam. Da ustvarimo simulacijo skozi čas, povežemo več iteracij, kjer stanja celic v prejšnji iteraciji diskretno določajo stanja celic v naslednji iteraciji.
@@ -199,5 +199,7 @@ Na koncu lahko zaključim, da celični avtomati niso le teoretični koncept, tem
 
 # Viri
 Wikipedija: Celični avtomati - https://en.wikipedia.org/wiki/Cellular_automaton
+
 Wikipedija: Conwayova igra življenja - https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
 Daniel Shiffman : ''Nature of code'' - https://natureofcode.com/
